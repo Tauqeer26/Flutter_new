@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:iprovidepro/admin.dart';
 import 'package:iprovidepro/model/navigation_item.dart';
@@ -7,6 +5,8 @@ import 'package:iprovidepro/people.dart';
 import 'package:iprovidepro/splash.dart';
 import 'package:provider/provider.dart';
 import 'navigation_provider.dart';
+import 'orderhistory.dart';
+import 'userrequest.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -56,7 +56,7 @@ class _MainPageState extends State<MainPage> {
 
   
 }
-  Widget buildpages(
+  Widget buildpages( 
     BuildContext context,
   ){
     final provider=Provider.of<NavigationProvider>(context);
@@ -69,9 +69,11 @@ class _MainPageState extends State<MainPage> {
       case NavigationItem.favourites:
         return People();
       case NavigationItem.header:
+        return OrderHistory(); 
         // TODO: Handle this case.
-        break;
+        
       case NavigationItem.workflow:
+        return UserRequest(); 
         // TODO: Handle this case.
         break;
       case NavigationItem.updates:
@@ -86,3 +88,4 @@ class _MainPageState extends State<MainPage> {
     }
     return Container();
   }
+  

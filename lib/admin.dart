@@ -26,7 +26,37 @@ class _AdminState extends State<Admin> {
             ),),
         ),
       ),
-      body: Container(),
+      body: Container(
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                
+                children: [
+                  Container(
+                    width: 100,
+                    height: 80,
+                    color: Color.fromARGB(96, 51, 22, 22),
+                  ),
+                  SizedBox(height: 20,),
+                  Container(
+                    width: 100,
+                    height: 80,
+                    color: Color.fromARGB(96, 51, 22, 22),
+                  ),
+                  SizedBox(height: 20,),
+                  Container(
+                    width: 100,
+                    height: 80,
+                    color: Color.fromARGB(96, 51, 22, 22),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
       
       
       

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'drawer.dart';
-class People extends StatelessWidget {
-  const People({Key? key}) : super(key: key);
+
+class OrderHistory extends StatelessWidget {
+  const OrderHistory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
      drawer: NavigationWidget(),
     appBar: AppBar(
-      backgroundColor: Colors.green,
+      backgroundColor: Color.fromARGB(255, 175, 122, 76),
       title: Center(
         child: Text(
-          "People",
+          "Order History",
           style: TextStyle(color: Colors.white),
         ),
       ),

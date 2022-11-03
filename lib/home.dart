@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'model/navigation_item.dart';
+import 'navigation_provider.dart';
+import 'package:provider/provider.dart';
 import 'admin.dart';
-
+import 'orderhistory.dart';
+import 'people.dart';
+import 'userrequest.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -136,7 +140,7 @@ class MainPage extends StatelessWidget {
                                 onTap: ( ) {
 
                                    Navigator.push(context, 
-                                  MaterialPageRoute(builder: (context) =>Admin()
+                                  MaterialPageRoute(builder: (context) =>buildpages(context)
                                   
                                   )
                                 );
@@ -207,6 +211,38 @@ class MainPage extends StatelessWidget {
         ],
       ),
     );
+  }
+    Widget buildpages( 
+    BuildContext context,
+  ){
+    final provider=Provider.of<NavigationProvider>(context);
+    final navigationItem=provider.navigationItem;
+
+    switch (navigationItem){
+      case NavigationItem.people:
+        return Admin();
+
+      case NavigationItem.favourites:
+        return People();
+      case NavigationItem.header:
+        return OrderHistory(); 
+        // TODO: Handle this case.
+        
+      case NavigationItem.workflow:
+        return UserRequest(); 
+        // TODO: Handle this case.
+        
+      case NavigationItem.updates:
+        // TODO: Handle this case.
+        break;
+      case NavigationItem.plugin:
+        // TODO: Handle this case.
+        break;
+      case NavigationItem.notification:
+        // TODO: Handle this case.
+        break;
+    }
+    return Container();
   }
 }
 
