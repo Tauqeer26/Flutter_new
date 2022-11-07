@@ -7,6 +7,8 @@ import 'admin.dart';
 import 'orderhistory.dart';
 import 'people.dart';
 import 'userrequest.dart';
+import 'trackorder.dart';
+import 'logout.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -39,33 +41,38 @@ class MainPage extends StatelessWidget {
       body: Stack(
         children: <Widget>[
 
-          Positioned(
-            left: -getBiglDiameter(context) / 2,
-            top: -getBiglDiameter(context) / 2,
-            child: Container(
-              width: getBiglDiameter(context),
-              height: getBiglDiameter(context),
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                      colors: [Color(0xFF0A66C3), Color(0xFF0A66C3)],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter)),
-            ),
-          ),
+          // Positioned(
+          //   left: -getBiglDiameter(context) / 2,
+          //   top: -getBiglDiameter(context) / 2,
+          //   child: Container(
+          //     width: getBiglDiameter(context),
+          //     height: getBiglDiameter(context),
+          //     decoration: const BoxDecoration(
+          //         shape: BoxShape.circle,
+          //         gradient: LinearGradient(
+          //             colors: [Color(0xFF0A66C3), Color(0xFF0A66C3)],
+          //             begin: Alignment.topCenter,
+          //             end: Alignment.bottomCenter)),
+          //   ),
+          // ),
 
-          Container(
-            margin: const EdgeInsets.only(left: 160,top: 150),
-
-            width: 105,
-            height: 105,
-            alignment: Alignment.center, // This is needed
-            child: Image.asset('images/logo.png',
-          //Constants.ASSETS_IMAGES + "logo.png",
-            fit: BoxFit.contain,
-            width: 300,
-          ),
-
+          Column(
+            mainAxisAlignment:MainAxisAlignment.start,
+            children: [
+              Container(
+                margin: const EdgeInsets.all(120.0),
+                
+                width: 155,
+                height: 150,
+                alignment: Alignment.center, // This is needed
+                child: Image.asset('images/logo.png',
+              //Constants.ASSETS_IMAGES + "logo.png",
+                fit: BoxFit.contain,
+                width: 300,
+              ),
+              
+              ),
+            ],
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -73,7 +80,7 @@ class MainPage extends StatelessWidget {
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 251, 253, 254),
                       //border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(10)),
                   margin: const EdgeInsets.fromLTRB(20, 300, 20, 10),
@@ -84,13 +91,14 @@ class MainPage extends StatelessWidget {
                         decoration: InputDecoration(
                             icon: Icon(
                               Icons.email,
-                              color: Color(0xFF0A66C3),
+                              color: Colors.blue[900],
                             ),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.grey.shade100 )),
+                                BorderSide(color: Color.fromARGB(255, 5, 66, 127) )),
                             labelText: "Email",
-                            enabledBorder: InputBorder.none,
+                            // prefixIcon: const Icon(Icons.person, color: Color.fromARGB(255, 51, 19, 125),),
+                            // enabledBorder: InputBorder.a,
                             labelStyle: const TextStyle(color: Colors.grey)),
                       ),
                       SizedBox(height: 20,),
@@ -99,11 +107,11 @@ class MainPage extends StatelessWidget {
                         decoration: InputDecoration(
                             icon: const Icon(
                               Icons.vpn_key,
-                              color: Color(0xFF0A66C3),
+                              color: Color.fromARGB(255, 5, 66, 127),
                             ),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.grey.shade100)),
+                                BorderSide(color: Color.fromARGB(255, 5, 66, 127))),
                             labelText: "Password",
                             enabledBorder: InputBorder.none,
                             labelStyle: const TextStyle(color: Colors.grey)),
@@ -119,72 +127,48 @@ class MainPage extends StatelessWidget {
                         child: const Text(
                           "FORGOT PASSWORD?",
                           style:
-                          TextStyle(color: Color(0xFF0A66C3), fontSize: 11),
+                          TextStyle(color: Color.fromARGB(255, 5, 66, 127), fontSize: 11),
                         ))),
                 Container(
-                  margin: const EdgeInsets.fromLTRB(20, 0, 20, 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        height: 40,
-                        child: Container(
-                          child: Center(
-                            child: Material(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.transparent,
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(20),
-                                splashColor: Colors.blueAccent,
-                                onTap: ( ) {
+                  margin: const EdgeInsets.fromLTRB(40, 30, 40, 30),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    height: 40,
+                    child: Container(
+                      child: Center(
+                        child: Material(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color.fromARGB(0, 33, 33, 122),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(20),
+                            splashColor: Colors.blueAccent,
+                            onTap: ( ) {
 
-                                   Navigator.push(context, 
-                                  MaterialPageRoute(builder: (context) =>buildpages(context)
-                                  
-                                  )
-                                );
-                                },
-                                child: Center(
-                                  child: Text(
-                                    "SIGN IN",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ),
+                               Navigator.push(context, 
+                              MaterialPageRoute(builder: (context) =>buildpages(context)
+                              
+                              )
+                            );
+                            },
+                            child: Center(
+                              child: Text(
+                                "SIGN IN",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700),
                               ),
                             ),
                           ),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xFF0A66C3),
-                                    Color(0xFF0A66C2)
-                                  ],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter)),
                         ),
                       ),
-                      // FloatingActionButton(
-                      //   onPressed: () {},
-                      //   mini: true,
-                      //   elevation: 0,
-                      //   child: const Image(
-                      //     image: AssetImage("assets/facebook2.png"),
-                      //   ),
-                      // ),
-                      // FloatingActionButton(
-                      //   onPressed: () {},
-                      //   mini: true,
-                      //   elevation: 0,
-                      //   child: const Image(
-                      //     image: AssetImage("assets/twitter.png"),
-                      //   ),
-                      // ),
-                    ],
-                  ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color.fromARGB(255, 5, 66, 127),
+                              
+                              
+                              )
+                              ),
+                    ),
                 ),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,
@@ -234,10 +218,11 @@ class MainPage extends StatelessWidget {
         
       case NavigationItem.updates:
         // TODO: Handle this case.
-        break;
+        return TrackOrder();
       case NavigationItem.plugin:
+        // ignore: todo
         // TODO: Handle this case.
-        break;
+        return MainPage();
       case NavigationItem.notification:
         // TODO: Handle this case.
         break;

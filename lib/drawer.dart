@@ -22,6 +22,11 @@ class _NavigationWidgetState extends State<NavigationWidget> {
       color: Colors.blue[900],
       child: ListView(
         children: [
+          buildHeader(context,
+          urlImage: Image.asset('images/logo.png'),
+          name: "Tauqeer Ali Khan",
+          email:"khantauqeerali26@gmail.com",
+          ),
           Container(
             padding: padding,
             child: Column(
@@ -30,7 +35,7 @@ class _NavigationWidgetState extends State<NavigationWidget> {
                 
                 buildMenuItem(
                   context,
-                  item: NavigationItem.people,
+                  item: NavigationItem.people,  
                   text: "All Users",
                   icon:Icons.verified_user_sharp,
                 ),
@@ -38,10 +43,10 @@ class _NavigationWidgetState extends State<NavigationWidget> {
                 buildMenuItem(
                   context,
                   item: NavigationItem.favourites,
-                  text: "List of Products",
+                  text: "Product List",
                   icon:Icons.production_quantity_limits_sharp,
                 ),
-                const SizedBox(height: 16,),
+                
                 buildMenuItem(
                   context,
                   item: NavigationItem.header,
@@ -54,9 +59,19 @@ class _NavigationWidgetState extends State<NavigationWidget> {
                   text: "User Requests",
                   icon:Icons.request_page,
                 ),
+                buildMenuItem(
+                  context,
+                  item: NavigationItem.updates,
+                  text: "Track Order",
+                  icon:Icons.track_changes,),
                 const SizedBox(height: 24,),
                 Divider(color: Colors.white70,),
-                const SizedBox(height: 24,),
+                const SizedBox(height: 12,),
+                buildMenuItem(
+                  context,
+                  item: NavigationItem.plugin,
+                  text: "Logout",
+                  icon:Icons.logout,),
               ],
             ),
           )
@@ -95,3 +110,39 @@ class _NavigationWidgetState extends State<NavigationWidget> {
     provider.setNavigationItem(item);
   }
 }
+Widget buildHeader(
+    BuildContext context, {
+    required Widget urlImage,
+    required String name,
+    required String email,
+  }) =>
+      Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {},//=> selectItem(context, NavigationItem.header),
+          child: Container(
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                CircleAvatar(
+                    radius: 60,backgroundColor: Colors.white,
+                    
+                    ),
+                    SizedBox(height: 4),
+                    Column(children: [
+                      Text(" Tauqeer Ali Khan",style: TextStyle(fontSize: 15, color: Colors.white,fontStyle: FontStyle.italic),),
+                      SizedBox(height: 4),
+                      Text(" khantauqeerali26@gmail.com",style: TextStyle(fontSize: 15, color: Colors.white,fontStyle: FontStyle.italic),),
+                    ],)
+                // SizedBox(width: 10),
+                
+                // CircleAvatar(
+                //   radius: 12,
+                //   backgroundColor: Color.fromRGBO(30, 60, 168, 1),
+                //   child: Icon(Icons.add_comment_outlined, color: Colors.white),
+                // )
+              ],
+            ),
+          ),
+        ),
+      );
