@@ -29,7 +29,7 @@ class _SplashState extends State<Splash> {
       color: Colors.white,
       height: double.infinity,
       alignment: Alignment.center, // This is needed
-      child: Image.asset('images/logo.png',
+      child: Image.asset('images/ss.png',
         //Constants.ASSETS_IMAGES + "logo.png",
         fit: BoxFit.contain,
         width: 200,

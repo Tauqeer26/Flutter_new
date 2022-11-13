@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iprovidepro/admin.dart';
 import 'model/navigation_item.dart';
 import 'navigation_provider.dart';
 import 'package:provider/provider.dart';
@@ -14,10 +15,10 @@ class NavigationWidget extends StatefulWidget {
 }
 
 class _NavigationWidgetState extends State<NavigationWidget> {
-
+  bool isLoading=false;
   static final padding= EdgeInsets.symmetric(horizontal: 20);
   @override
-  Widget build(BuildContext context)=> Drawer(
+  Widget build(BuildContext context)=>isLoading? const LoadingPage(): Drawer(
     child: Container(
       color: Colors.blue[900],
       child: ListView(
@@ -100,7 +101,13 @@ class _NavigationWidgetState extends State<NavigationWidget> {
         selectedTileColor: Colors.white24,
         leading: Icon(icon, color: color),
         title: Text(text, style: TextStyle(color: color, fontSize: 16)),
-        onTap: ()=> selectItem(context, item),
+        onTap: ()async {
+                                setState(() => isLoading=true);
+                                await Future.delayed(Duration(milliseconds: 500), () {});
+                                
+                                selectItem(context, item);
+                              setState(() => isLoading=false);
+                            },
       ),
     );
   }

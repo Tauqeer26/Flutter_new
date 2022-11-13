@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:iprovidepro/admin.dart';
 import 'drawer.dart';
 import 'model/searchfield.dart';
 import 'model/productcard.dart';
 import 'model/newcard.dart';
-class People extends StatelessWidget {
+class People extends StatefulWidget {
   const People({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-   return Scaffold(
+  State<People> createState() => _PeopleState();
+}
+
+class _PeopleState extends State<People> {
+
+  bool isLoading=false;
+  @override
+  Widget build(BuildContext context) => isLoading? const LoadingPage(): Scaffold(
      drawer: NavigationWidget(),
     appBar: AppBar(
       backgroundColor: Colors.blue[900],
@@ -80,4 +87,3 @@ class People extends StatelessWidget {
     ),
    ) ;
   }
-}

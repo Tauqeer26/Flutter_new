@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'drawer.dart';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'model/searchfield.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -12,9 +12,11 @@ class Admin extends StatefulWidget {
 }
 
 class _AdminState extends State<Admin> {
+  bool isLoading=false;
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => isLoading? const LoadingPage():
+     Scaffold(
         drawer: NavigationWidget(),
         appBar:
         
@@ -97,5 +99,22 @@ class _AdminState extends State<Admin> {
       
       
       );
+  }
+
+
+class LoadingPage extends StatelessWidget {
+  const LoadingPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+        body: Center(
+          child: SpinKitWave(
+          color: Colors.red,
+          size: 50.0,
+          )
+        ),
+    );
   }
 }

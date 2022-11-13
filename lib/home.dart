@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'model/navigation_item.dart';
@@ -26,17 +28,23 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
+  
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
 
+class _MainPageState extends State<MainPage> {
+  bool isLoading=false;
   double getSmallDiameter(BuildContext context) =>
       MediaQuery.of(context).size.width * 2 / 3;
+
   double getBiglDiameter(BuildContext context) =>
       MediaQuery.of(context).size.width * 7 / 8;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => isLoading? const LoadingPage(): Scaffold(
       backgroundColor: const Color(0xFFEEEEEE),
       body: Stack(
         children: <Widget>[
@@ -65,7 +73,7 @@ class MainPage extends StatelessWidget {
                 width: 155,
                 height: 150,
                 alignment: Alignment.center, // This is needed
-                child: Image.asset('images/logo.png',
+                child: Image.asset('images/ss.png',
               //Constants.ASSETS_IMAGES + "logo.png",
                 fit: BoxFit.contain,
                 width: 300,
@@ -135,6 +143,7 @@ class MainPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.5,
                     height: 40,
                     child: Container(
+                      // ignore: sort_child_properties_last
                       child: Center(
                         child: Material(
                           borderRadius: BorderRadius.circular(10),
@@ -142,13 +151,13 @@ class MainPage extends StatelessWidget {
                           child: InkWell(
                             borderRadius: BorderRadius.circular(20),
                             splashColor: Colors.blueAccent,
-                            onTap: ( ) {
-
+                            onTap: ( )async {
+                                setState(() => isLoading=true);
+                                await Future.delayed(Duration(milliseconds: 1000), () {});
+                                
                                Navigator.push(context, 
-                              MaterialPageRoute(builder: (context) =>buildpages(context)
-                              
-                              )
-                            );
+                              MaterialPageRoute(builder: (context) =>buildpages(context) ) );
+                              setState(() => isLoading=false);
                             },
                             child: Center(
                               child: Text(
@@ -196,6 +205,7 @@ class MainPage extends StatelessWidget {
       ),
     );
   }
+
     Widget buildpages( 
     BuildContext context,
   ){
@@ -229,6 +239,5 @@ class MainPage extends StatelessWidget {
     }
     return Container();
   }
-}
 
 
